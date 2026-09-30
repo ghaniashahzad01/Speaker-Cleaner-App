@@ -33,3 +33,16 @@ A Flutter-based mobile application designed to help remove water and moisture fr
 
 ```bash
 git clone git@github.com:ghaniashahzad01/Speaker-Cleaner-App.git
+```
+### 2. Navigate to the project
+```
+cd Speaker-Cleaner-App
+```
+### 3. Install dependencies
+```
+flutter pub get
+```
+### 4. Run the application
+```
+flutter run
+```
