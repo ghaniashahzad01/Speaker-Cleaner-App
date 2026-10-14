@@ -458,8 +458,21 @@ class _SpeakerCleanerHomeState extends State<SpeakerCleanerHome> with TickerProv
                     title: 'Current Cleaning Mode',
                     child: _ModeMiniRow(info: _mode),
                   ),
+                 
+                 
                   const SizedBox(height: 14),
-                  _SettingsTile(icon: Icons.shield_rounded, title: 'Safety Information', subtitle: 'Important usage guidance', onTap: () { Navigator.pop(context); _showSafetyInformation(); }),
+                  _SettingsTile(icon: Icons.shield_rounded, title: 'Safety Information',
+                  
+                  subtitle: 'Important usage guidance', onTap: () { Navigator.pop(context);
+                   _showSafetyInformation(); }),
+                  
+                   const SizedBox(height: 14),
+                  _SettingsTile(icon: Icons.privacy_tip_rounded, title: 'Privacy Policy',
+                  
+                  subtitle:'How we protect your privacy', onTap: () { Navigator.pop(context);
+                   _showPrivacyPolicy(); }),
+                  
+
                   const SizedBox(height: 10),
                   _SettingsTile(icon: Icons.info_rounded, title: 'About Speaker Cleaner', subtitle: 'App information and version', onTap: () { Navigator.pop(context); _showAbout(); }),
                   const SizedBox(height: 24),
@@ -491,6 +504,158 @@ class _SpeakerCleanerHomeState extends State<SpeakerCleanerHome> with TickerProv
       ),
     );
   }
+
+  void _showPrivacyPolicy() {
+  Widget policySection(String heading, String body) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            heading,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: _blue,
+            ),
+          ),
+          const SizedBox(height: 7),
+          Text(
+            body,
+            style: TextStyle(
+              fontSize: 14,
+              height: 1.6,
+              color: _muted,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  showDialog(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      backgroundColor: _surface,
+      title: const Row(
+        children: [
+          Icon(Icons.privacy_tip_rounded, color: _blue),
+          SizedBox(width: 10),
+          Expanded(child: Text('Privacy Policy')),
+        ],
+      ),
+      content: SizedBox(
+        width: 600,
+        height: MediaQuery.of(dialogContext).size.height * 0.60,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Last updated: October 2026',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: _muted,
+                ),
+              ),
+              const SizedBox(height: 18),
+
+              policySection(
+                '1. Information Collection and Use',
+                'Speaker Cleaner is designed as an offline utility tool. '
+                'The app does not collect, store, transmit, or share '
+                'personally identifiable information such as your name, '
+                'email address, phone number, location, or device identifiers. '
+                'Cleaning operations, audio playback, timers, and app '
+                'preferences are handled locally on your device. '
+                'The app does not send this information to external servers.',
+              ),
+
+              policySection(
+                '2. Permissions Required',
+                'Speaker Cleaner uses audio playback capabilities to play '
+                'cleaning tones. Where supported and required, audio-related '
+                'settings may be used to support playback. The WAKE_LOCK '
+                'permission may be used to help keep the cleaning process '
+                'or timer active during an ongoing session. The app does not '
+                'require microphone, camera, contacts, precise location, '
+                'or external-file access for its core cleaning functionality. '
+                'Actual permissions depend on the app build and platform.',
+              ),
+
+              policySection(
+                '3. Third-Party Services',
+                'The app does not integrate third-party analytics or '
+                'tracking SDKs in its current version. If third-party '
+                'services, including Google Play Services or advertising '
+                'services such as AdMob, are introduced in a future version, '
+                'this policy will be updated to explain their use and any '
+                'relevant data practices.',
+              ),
+
+              policySection(
+                '4. Safety Disclaimer',
+                'Speaker Cleaner plays selected audio frequencies intended '
+                'to help users perform a speaker-cleaning or water-ejection '
+                'routine. The app cannot guarantee that it will repair a '
+                'damaged speaker or remove all water or debris. Use a '
+                'comfortable volume, follow your device manufacturer’s '
+                'recommendations, and stop playback if the sound causes '
+                'discomfort. Do not rely on this app as a substitute for '
+                'professional device repair.',
+              ),
+
+              policySection(
+                '5. Children’s Privacy',
+                'Speaker Cleaner is intended for a general audience and is '
+                'not specifically directed at children under 13, or under '
+                '16 where applicable law sets that age threshold. The app '
+                'does not knowingly collect children’s personal information. '
+                'If the app’s data practices change, this policy will be '
+                'updated accordingly.',
+              ),
+
+              policySection(
+                '6. Changes to This Privacy Policy',
+                'We may update this Privacy Policy periodically to reflect '
+                'changes to the app, its features, applicable requirements, '
+                'or data practices. Updated terms will be posted with the '
+                'revised policy. Changes become effective when the updated '
+                'policy is published.',
+              ),
+
+              policySection(
+                '7. Contact Information',
+                'If you have questions or concerns about this Privacy Policy, '
+                'please contact us at:\n'
+                'infoinfo@nexappra.com\n\n'
+                'Website: www.nexappra.com',
+              ),
+
+              const SizedBox(height: 4),
+              Text(
+                'By using Speaker Cleaner, you acknowledge that you have '
+                'read this Privacy Policy.',
+                style: TextStyle(
+                  fontSize: 12,
+                  height: 1.5,
+                  color: _muted,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(dialogContext),
+          child: const Text('Close'),
+        ),
+      ],
+    ),
+  );
+}
 
   void _showAbout() {
     showDialog(
