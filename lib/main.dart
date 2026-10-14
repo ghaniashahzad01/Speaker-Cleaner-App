@@ -267,7 +267,7 @@ class _SpeakerCleanerHomeState extends State<SpeakerCleanerHome> with TickerProv
   CleaningMode _selectedMode = CleaningMode.water;
   bool _isCleaning = false;
   int _remainingSeconds = 30;
-  double _volume = .50;
+  double _volume = .80;
   Timer? _timer;
   late final AnimationController _pulseController;
   late final AnimationController _waveController;
@@ -433,8 +433,8 @@ class _SpeakerCleanerHomeState extends State<SpeakerCleanerHome> with TickerProv
                             child: Slider(
                               value: _volume,
                               min: .20,
-                              max: .70,
-                              divisions: 10,
+                              max: 1.0,
+                              divisions: 8,
                               activeColor: _blue,
                               inactiveColor: Colors.white12,
                               onChanged: (value) async {
@@ -532,7 +532,7 @@ class _SpeakerCleanerHomeState extends State<SpeakerCleanerHome> with TickerProv
     bytes.setUint16(34, bitsPerSample, Endian.little);
     _writeString(bytes, 36, 'data');
     bytes.setUint32(40, dataSize, Endian.little);
-    const amplitude = .35;
+    const amplitude = .60;
     var phase = 0.0;
     const fadeSamples = 2205;
     for (var i = 0; i < numberOfSamples; i++) {
